@@ -1,0 +1,254 @@
+body {
+  background: url('../imagens/BG-SVG.svg') no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Ajuste do logo para se manter "responsivo" ao sistema de grids do bootstrap */
+@media (min-width: 768px) {
+  a.navbar-brand {
+    width: 8.33%;
+  }
+}
+
+/* 
+
+  MODIFICANDO O INPUT E BOTÃO DE BUSCA DA NAVBAR
+
+*/
+
+input.bg-navbar::placeholder {
+  color: #f8f9fa;
+}
+
+input.bg-navbar:focus {
+  background-color: #333f4b;
+  box-shadow: none;
+  color: #f8f9fa;
+}
+
+button.fa-search:focus {
+  box-shadow: none;
+}
+
+/*
+
+  MODIFICANDO O DROPDOWN MENU (BOTÃO DE "NOTIFICAÇÕES") DA NAVBAR
+
+*/
+
+div.dropdown-menu {
+  border-radius: 25px;
+}
+
+a.dropdown-item {
+  border-radius: 25px;
+}
+
+a.dropdown-item.active, .dropdown-item:active {
+  background-color: #f8f9fa;
+  color: #333f4b;
+}
+
+span.text-muted {
+  color: #f8f9fa;
+}
+
+/*
+
+  MODIFICANDO O FORMULÁRIO PRINCIPAL
+
+*/
+
+form#formularioPrincipal .form-control {
+  border-radius: 15px;
+}
+
+form#formularioPrincipal .form-control:focus {
+  box-shadow: 0 0 10px #ced4da;
+}
+
+/* Alterando o comportamento do input type="file" */
+form#formularioPrincipal #arquivo {
+  display: none;
+}
+
+form#formularioPrincipal .arquivo-label {
+  background: #333f4b;
+  color: #f8f9fa;
+  padding: 0.4rem 2rem;
+  border-radius: 50px;
+  transition: .1s;
+}
+
+form#formularioPrincipal .arquivo-label:hover {
+  background: #4b5967;
+  cursor: pointer;
+  box-shadow: 0 0 10px #4b5967;
+}
+
+/* Ajustando o estilo do botão de cancelar imagem */
+form#formularioPrincipal #botao-cancelar {
+  border: none;
+  background: none;
+  display: none;
+}
+
+form#formularioPrincipal #botao-cancelar:focus {
+  box-shadow: none;
+}
+  
+/*
+
+  CLASSES CONTEXTUAIS PRÓPRIAS
+
+*/
+
+.bg-navbar {
+  background-color: #333f4b;
+}
+
+.bg-logo {
+  background-color: #202b37;
+}
+
+.bg-babygreen {
+  background-color: #a1d5a5;
+  border-radius: 30px;
+}
+
+.btn-green {
+  background-color: #20f863;
+  color: #333f4b !important;
+  box-shadow: 0 0 25px #20f863;
+  border-radius: 150px;
+}
+
+.btn-green:focus {
+  box-shadow: 0 0 25px #20f863;
+  opacity: 0.8;
+}
+
+.btn-green:hover {
+  background-color: #4cf980;
+  box-shadow: 0 0 25px #4cf980;
+}
+
+.btn-favorite:focus {
+  box-shadow: none;
+}
+
+.btn-babyblue {
+  background-color: #2467e7;
+  color: #fff !important;
+}
+
+.btn-babyblue:focus {
+  box-shadow: 0 0 10px #2467e7;
+}
+
+.btn-godblack {
+  background-color: #202b37;
+}
+
+.btn-godblack:focus {
+  box-shadow: 0 0 10px #202b37;
+}
+
+/* 
+  Borda para o elemento "dropdown-divider" do elemento "expand"/"collapse"
+  Visível apenas resoluções menores, após expandir a navbar
+*/
+.border-logo {
+  border-top: 1px solid #202b37;
+  box-shadow: 0 0 1px #fff;
+}
+
+.text-orange {
+  color: #f9a146;
+}
+
+/* Sombra utilizada para a section "principal" e navbar */
+.shadow-container {
+  box-shadow: 0 0 15px #202b37;
+}
+
+/*
+
+  AJUSTE DA TABELA
+
+*/
+
+#tabela_paginate > ul > li.paginate_button.page-item.active > a {
+  background-color: #333f4b;
+  border-color: #333f4b;
+  color: white;
+}
+
+#tabela_paginate > ul > li > a {
+  color: #333f4b;
+}
+
+#tabela_paginate > ul > li > a:focus,
+#tabela_paginate > ul > li > a:active {
+  box-shadow: 0 0 5px #333f4b;
+}
+
+/*
+
+  AJUSTE DA TIMELINE
+
+*/
+
+.timeline {
+  box-sizing: border-box;
+}
+
+.timeline li {
+  position: relative;
+  list-style: none;
+}
+
+.timeline li .timeline-item {
+  position: relative;
+  padding: 0 0 15rem 0;
+  border-left: 2px solid #0f1b29;
+  box-shadow: 0 0 5px #0f1b29;
+}
+
+.timeline li .timeline-item-active {
+  border-left: 2px solid #3e6ab3;
+  box-shadow: 0 0 5px #3e6ab3;
+}
+
+.timeline li:last-child .timeline-item {
+  border-left: 1px solid transparent;
+  padding: 0;
+}
+
+.timeline li .timeline-item span {
+  position: absolute;
+  top: -8px;
+  left: -10px;
+  width: 20px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  background: #0f1b29;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0f1b29;
+}
+
+.timeline li .timeline-item-active span {
+  background: #3e6ab3;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #3e6ab3;
+}
+
+.timeline li .timeline-item h4 {
+  position: absolute;
+  margin: 15px 0 0 30px;
+  color: #f8f9fa;
+  font-family: monospace;
+  letter-spacing: 3px;
+}

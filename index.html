@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+
+    <!-- Meta tags obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Florence CSS -->
+    <link rel="stylesheet" href="css/florence.css" type="text/css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" integrity="sha384-OLYO0LymqQ+uHXELyx93kblK5YIS3B2ZfLGBmsJaUyor7CpMTBsahDHByqSuWW+q" crossorigin="anonymous">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="datatables/datatables.css">
+
+    <title>Faculdade Florence</title>
+
+  </head>
+  <body>
+
+    <!-- Aplicando uma margin para o container separar das laterais do documento -->
+    <div class="m-2 m-md-5">
+
+      <header>
+        
+        <h1 class="font-weight-bold text-white mb-4">Sistema de Solicitação ao marketing</h1>
+
+        <!-- Início da Navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-navbar p-0 shadow-container">
+          <div class="container-fluid p-0">
+            
+            <!-- Logo -->
+            <a class="navbar-brand bg-logo p-4 text-center" href="#" style="">
+              <img class="img-fluid" src="imagens/logo-sem-bg.png">
+            </a>
+
+            <!-- Lista contendo o botão de "nova solicitação" e botão/input de "buscar" -->
+            <ul class="nav mr-auto justify-content-around">
+              <li class="nav-item">
+                <a class="nav-link btn btn-green m-lg-2 mx-md-2 px-4 px-md-5" href="#">
+                  nova solicitação
+                </a>
+              </li>
+            </ul>
+            <!-- Lista contendo os botões de "notificações", "configurações", " " e "sair" -->
+            <ul class="nav justify-content-around ml-auto d-md-inline-flex d-none">
+              <li class="nav-item dropdown mr-md-3">
+                <a id="navbarDropdown" class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="fas fa-bell fa-lg text-danger"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-md-right mr-md-4" aria-labelledby="navbarDropdown">
+                    
+                  <a class="dropdown-item font-weight-bold" href="#">
+                    <div>
+                      <span class="">#521561</span> <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div>
+                      <span class="text-danger">•</span> <span class="">Recusado</span>
+                    </div>
+                    <div>
+                      <span class="small text-muted">
+                        Comentários sobre ajuda na solicitação <br>
+                        Comentários sobre ajuda na solicitação
+                      </span>
+                    </div>
+                  </a>
+                  <hr class="mx-3">
+                  <a class="dropdown-item font-weight-bold" href="#">
+                    <div>
+                      <span class="">#521561</span> <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div>
+                      <span class="text-success">•</span> <span class="">Aprovado</span>
+                    </div>
+                    <div>
+                      <span class="small text-muted">
+                        Comentários sobre ajuda na solicitação <br>
+                        Comentários sobre ajuda na solicitação
+                        </span>
+                    </div>
+                  </a>
+
+                </div>
+              </li>
+              <li class="nav-item mr-md-3">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-cog fa-lg text-light"></i>
+                </a>
+              </li>
+              <li class="nav-item mr-md-3">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-sync-alt fa-lg text-light"></i>
+                </a>
+              </li>
+              <li class="nav-item mr-md-3">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-sign-out-alt fa-lg text-light"></i>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+        <!-- Fim da Navbar -->
+
+      </header>
+
+      <section class="shadow-container">
+        <div class="container-fluid">
+          
+          <div class="row">
+
+            <div class="col-md-1 d-md-block d-none bg-navbar text-center p-3">
+              <i class="fas fa-user-circle fa-3x text-white"></i>
+            </div>
+
+            <div id="colunaPrincipal" class="col-md-7 py-4 px-xl-5 bg-white">
+              <div class="row">
+                <div class="col-12">
+                  <i class="fas fa-caret-left fa-3x text-white position-absolute d-xl-block d-none" style="top: -7px; left: -50px;"></i>
+                </div>
+              </div>
+
+              <div class="row position-absolute d-md-block d-none" style="top: 50%; right: -2vh; z-index: 999;">
+                <div class="col-12">
+                  <button id="botaoEsconder" class="btn btn-godblack rounded-circle" type="button" style="padding: .7rem;">
+                    <i class="fas fa-bars text-light d-block" style="transform: rotate(90deg); font-size: 18px;"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="tabela" class="table table-borderless table-hover">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th class="font-weight-light">Número</th>
+                          <th class="font-weight-light">Solicitação</th>
+                          <th class="font-weight-light">Status</th>
+                          <th class="font-weight-light">Pessoas</th>
+                          <th class="font-weight-light">Tipo</th>
+                          <th class="font-weight-light">Data</th>
+                        </tr>
+                      </thead>
+                      <tbody class="font-weight-bold">
+                        <!-- Exemplo Recusado -->
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-warning"></i>
+                            </button>
+                            <span class="d-none">1</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <!-- Exemplo Aprovado -->
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-warning"></i>
+                            </button>
+                            <span class="d-none">2</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-success">•</span><span class="ml-2">Aprovado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <!-- Exemplo Pendente -->
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">3</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-orange">•</span><span class="ml-2">Pendente</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">4</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">5</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-success">•</span><span class="ml-2">Aprovado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">6</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-orange">•</span><span class="ml-2">Pendente</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">7</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">8</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-success">•</span><span class="ml-2">Aprovado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">9</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-orange">•</span><span class="ml-2">Pendente</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">10</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">11</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-success">•</span><span class="ml-2">Aprovado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">12</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-orange">•</span><span class="ml-2">Pendente</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">13</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">14</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-success">•</span><span class="ml-2">Aprovado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">15</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-orange">•</span><span class="ml-2">Pendente</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button class="btn btn-favorite" type="button">
+                              <i class="fas fa-star fa-lg text-muted"></i>
+                            </button>
+                            <span class="d-none">16</span>
+                          </td>
+                          <td>
+                            #521561
+                          </td>
+                          <td>
+                            Pedido material...
+                          </td>
+                          <td>
+                            <span class="text-danger">•</span><span class="ml-2">Recusado</span>
+                          </td>
+                          <td>
+                            <i class="fas fa-users"></i>
+                          </td>
+                          <td>
+                            Endomarketing
+                          </td>
+                          <td>
+                            20/09/2020
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="colunaEsconder" class="col-md-4 d-md-block d-none bg-logo">
+              <div class="card bg-transparent border-0 py-4">
+                <div class="card-body">
+                  <canvas id="myPieChart" height="300"></canvas>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 text-light d-lg-flex justify-content-lg-around text-md-center">
+                  <div>
+                    <span class="text-success">•</span><span class="mx-2">Aprovado</span>
+                  </div>
+                  <div>
+                    <span class="text-danger">•</span><span class="mx-2">Recusado</span>
+                  </div>
+                  <div>
+                    <span class="text-orange">•</span><span class="mx-2">Pendente</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <hr class="bg-light">
+                </div>
+              </div>
+
+              <div class="row my-5">
+                <div class="col-12">
+                  <div class="bg-babygreen text-center py-5" style="border-radius: 25px;">
+                    <div>
+                      <i class="fas fa-medal fa-5x text-light"></i>
+                    </div>
+                    <div>
+                      <p class="h3 mt-3">Parabéns João,</p>
+                      <p>
+                        57,6% as suas solicitações foram aprovadas <br>
+                        Verifique gráfico no seu perfil.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="container-fluid">
+          
+          <div class="row mt-3 text-white">
+
+            <div class="col-md-6 p-0">
+              <span>
+                &copy; Todos os direitos reservados
+              </span>
+              <a class="text-info" href="#">Política de privacidade</a>
+            </div>
+            <div class="col-md-6 text-md-right p-0">
+              <span>powered by SADEBR</span>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- JavaScript (opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- Charts.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+      // Exemplo Pie Chart
+      var ctx = document.getElementById('myPieChart');
+      var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ["Recusado", "Pendente", "Aprovado"],
+          datasets: [{
+            data: [20, 30, 50],
+            backgroundColor: ['#ef2e50', '#f9a146', '#6ebf4f'],
+            hoverBackgroundColor: ['#a72038', '#ae7031', '#4d8538'],
+            borderWidth: 0,
+
+          }]
+        },
+        options: {
+          maintainAspectRatio: true,
+          tooltips: {
+            backgroundColor: "rgb(255, 255, 255)",
+            bodyFontColor: "#000",
+            borderWidth: 1,
+            xPadding: 10,
+            yPadding: 10,
+            displayColors: false,
+          },
+          legend: {
+            display: false
+          },
+          cutoutPercentage: 80,
+        },
+      });
+    </script>
+    <!-- DataTables  -->
+    <script src="datatables/datatables.js"></script>
+    <script>
+      $(document).ready( function () {
+        $('#tabela').DataTable();
+      } );
+    </script>
+    <!-- Botão esconder -->
+    <script src="js/florence.js"></script>
+
+  </body>
+
+</html>

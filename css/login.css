@@ -1,0 +1,73 @@
+html,
+body,
+section#login,
+section#cadastro {
+  height: 100%;
+}
+
+body {
+  background: url('../imagens/BG-SVG.svg') no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (min-width: 768px) and (max-width: 1440px) and (max-height: 1080px) {
+  section#cadastro {
+    margin: 10rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  section#login h1,
+  section#cadastro h1 {
+    font-size: 3rem;
+  }
+}
+
+/*
+
+  AJUSTANDO O FORMULÁRIO DE LOGIN / CADASTRO
+
+*/
+
+.form-signin {
+  background-color: #fff;
+  box-shadow: 0 0 15px #202b37;
+}
+
+.form-control {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-bottom: 1px solid #2467e7;
+}
+
+/*
+
+  CLASSES CONTEXTUAIS PRÓPRIAS
+
+*/
+
+.text-babyblue {
+  color: #2467e7;
+}
+
+.text-babyblue:hover {
+  color: #2467e7;
+}
+
+.btn-babyblue {
+  background-color: #2467e7;
+  color: #fff !important;
+}
+
+.btn-babyblue:focus {
+  box-shadow: 0 0 10px #2467e7;
+}
